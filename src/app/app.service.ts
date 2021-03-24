@@ -15,5 +15,10 @@ export class AppService {
         {responseType:'json'})
     }
 
+    insert_vehiculo(load):Observable<any>{
+        return this.httpClient.post(this.endpoint+"/insert_vehiculo", load,
+        {responseType:'json'})
+    }
+
 
 }

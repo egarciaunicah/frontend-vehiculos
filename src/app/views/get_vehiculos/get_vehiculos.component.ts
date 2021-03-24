@@ -10,6 +10,13 @@ import {AppService} from '../../app.service';
 export class GetVehiculosComponent{
  public listado_vehiculos: any[];
 
+ public Vehiculo = {
+     placa:"",
+     color:"",
+     marca:"",
+     modelo:""
+ }
+
  constructor(public service:AppService){
      this.listado_vehiculos = [];
  }
@@ -25,13 +32,31 @@ export class GetVehiculosComponent{
          err => {
              console.log("Error al consultar el servicio");
          },
-         ()=>{
-             console.log(response);
-             
+         ()=>{            
              this.listado_vehiculos = response;
          }
      )
 
+ }
+
+
+ insert_vehiculo(){
+    var response;
+    this.service.insert_vehiculo(this.Vehiculo).subscribe(
+        data=>response=data,
+        err => {
+            console.log("Error al consultar el servicio");
+        },
+        ()=>{            
+            this.Vehiculo = {
+                placa:"",
+                color:"",
+                marca:"",
+                modelo:""
+            }
+            this.get_vehiculos();
+        }
+    )
  }
  
 }
