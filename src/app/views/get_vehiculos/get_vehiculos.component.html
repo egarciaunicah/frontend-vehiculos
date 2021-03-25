@@ -16,7 +16,17 @@
         <td>{{v.color}}</td>
         <td>{{v.marca}}</td>
         <td>{{v.modelo}}</td>
-        <td class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EditModal"> Modificar
+        <td class="btn btn-primary btn-sm" 
+            data-toggle="modal" 
+            data-target="#EditModal"
+            (click)="getDatosVehiculosForm(v)"> Modificar
+        </td>
+        <td>
+          <button class="btn btn-danger btn-sm"
+                  (click)="delete_vehiculo(v.placa)"
+                  >
+            Eliminar
+          </button>
         </td>
       </tr>
     </tbody>
@@ -31,11 +41,29 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          TO DO: Agregar inputs y boton de guardar
+          <form>
+            <label>Placa:</label>
+            <input type="text" 
+                   class="form-control" 
+                   [(ngModel)]="Vehiculo.placa" 
+                   [ngModelOptions]="{standalone:true}"
+                   readonly="true"
+            >
+        
+            <label>Color:</label>
+            <input type="text" class="form-control" [(ngModel)]="Vehiculo.color" [ngModelOptions]="{standalone:true}">
+        
+            <label>Marca:</label>
+            <input type="text" class="form-control" [(ngModel)]="Vehiculo.marca" [ngModelOptions]="{standalone:true}">
+        
+            <label>Modelo:</label>
+            <input type="text" class="form-control" [(ngModel)]="Vehiculo.modelo" [ngModelOptions]="{standalone:true}">
+              
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Guardar</button>
+          <button type="button" class="btn btn-primary" (click)="update_vehiculo()">Guardar</button>
         </div>
       </div>
     </div>
@@ -44,20 +72,44 @@
 
 <div class="container">
   Agregar un nuevo vehiculo
-  <form>
+  
+  <form ngNativeValidate #form>
     <label>Placa:</label>
-    <input type="text" class="form-control" [(ngModel)]="Vehiculo.placa" [ngModelOptions]="{standalone:true}">
+    <input type="text" 
+           class="form-control" 
+           placeholder="Ej. PAH1201"
+           [(ngModel)]="Vehiculo.placa" 
+           maxlength="7"
+           minlength="7"
+           required="true"
+           [ngModelOptions]="{standalone:true}">
 
     <label>Color:</label>
-    <input type="text" class="form-control" [(ngModel)]="Vehiculo.color" [ngModelOptions]="{standalone:true}">
+    <input type="text" 
+    class="form-control" 
+    maxlength="45"
+    required="true"
+    [(ngModel)]="Vehiculo.color" 
+    [ngModelOptions]="{standalone:true}">
 
     <label>Marca:</label>
-    <input type="text" class="form-control" [(ngModel)]="Vehiculo.marca" [ngModelOptions]="{standalone:true}">
+    <input type="text" 
+           class="form-control" 
+           maxlength="45"
+           required="true"
+           [(ngModel)]="Vehiculo.marca" 
+           [ngModelOptions]="{standalone:true}">
 
     <label>Modelo:</label>
-    <input type="text" class="form-control" [(ngModel)]="Vehiculo.modelo" [ngModelOptions]="{standalone:true}">
+    <input type="text" 
+    class="form-control" 
+    maxlength="45"
+    required="true"
+    [(ngModel)]="Vehiculo.modelo" 
+    [ngModelOptions]="{standalone:true}">
 
-    <button class="btn btn-primary" (click)="insert_vehiculo()">
+    <button class="btn btn-primary" 
+            (click)="form.checkValidity() ? insert_vehiculo(): null">
       Guardar
     </button>
 

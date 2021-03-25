@@ -20,5 +20,14 @@ export class AppService {
         {responseType:'json'})
     }
 
+    update_vehiculo(load):Observable<any>{
+        return this.httpClient.put(this.endpoint+"/update_vehiculo", load,
+        {responseType:'json'})
+    }
+
+   delete_vehiculo(load):Observable<any>{
+        return this.httpClient.delete(this.endpoint+"/delete_vehiculo", {params:load,
+        responseType:'json'});
+    }
 
 }

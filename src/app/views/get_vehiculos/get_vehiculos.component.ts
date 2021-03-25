@@ -58,5 +58,50 @@ export class GetVehiculosComponent{
         }
     )
  }
+
+ getDatosVehiculosForm(v){
+     this.Vehiculo = {
+         placa: v.placa,
+         color: v.color,
+         marca: v.marca,
+         modelo: v.modelo
+     }
+ }
+
+ update_vehiculo(){
+    var response;
+    this.service.update_vehiculo(this.Vehiculo).subscribe(
+        data=>response=data,
+        err => {
+            console.log("Error al consultar el servicio");
+        },
+        ()=>{            
+            this.Vehiculo = {
+                placa:"",
+                color:"",
+                marca:"",
+                modelo:""
+            }
+            this.get_vehiculos();
+        }
+    )
+
+ }
+
+ delete_vehiculo(placa){
+    var response;
+    var load={
+        placa:placa
+    }
+    this.service.delete_vehiculo(load).subscribe(
+        data=>response=data,
+        err => {
+            console.log("Error al consultar el servicio");
+        },
+        ()=>{            
+            this.get_vehiculos();
+        }
+    )
+ }
  
 }
