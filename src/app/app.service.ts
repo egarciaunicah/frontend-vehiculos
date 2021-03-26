@@ -30,4 +30,15 @@ export class AppService {
         responseType:'json'});
     }
 
+    login(payload):Observable<any>{
+        return this.httpClient.post(this.endpoint + "/login", payload, {responseType: 'json'});
+      }
+    
+    set_session(token){
+        localStorage.setItem("vehiculo", JSON.stringify(token));
+      }
+
+      
+      
+
 }

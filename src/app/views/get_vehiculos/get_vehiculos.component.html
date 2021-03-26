@@ -78,6 +78,7 @@
     <input type="text" 
            class="form-control" 
            placeholder="Ej. PAH1201"
+           pattern = "^[a-zA-Z]{3}[0-9]{4}"
            [(ngModel)]="Vehiculo.placa" 
            maxlength="7"
            minlength="7"
@@ -86,7 +87,8 @@
 
     <label>Color:</label>
     <input type="text" 
-    class="form-control" 
+    class="form-control"
+    pattern="^[a-zA-Z]+" 
     maxlength="45"
     required="true"
     [(ngModel)]="Vehiculo.color" 
@@ -95,6 +97,7 @@
     <label>Marca:</label>
     <input type="text" 
            class="form-control" 
+           pattern="^[a-zA-Z]+" 
            maxlength="45"
            required="true"
            [(ngModel)]="Vehiculo.marca" 
