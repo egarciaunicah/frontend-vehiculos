@@ -7,12 +7,17 @@ import { AppService } from './app.service';
 import { GetVehiculosComponent } from './views/get_vehiculos/get_vehiculos.component';
 import {FormsModule} from '@angular/forms';
 import { LoginComponent } from './views/login/login.component';
+import { UsuariosComponent } from './views/usuarios/usuarios.component';
+import { MenuComponent } from './views/menu/menu.component';
+import { LoginGuard } from './app.loginguard';
 
 @NgModule({
   declarations: [
     AppComponent,
     GetVehiculosComponent,
-    LoginComponent 
+    LoginComponent,
+    UsuariosComponent,
+    MenuComponent 
   ],
   imports: [
     BrowserModule,
@@ -22,6 +27,7 @@ import { LoginComponent } from './views/login/login.component';
   ],
   providers: [
     AppService,
+    LoginGuard
   ],
   bootstrap: [AppComponent]
 })
